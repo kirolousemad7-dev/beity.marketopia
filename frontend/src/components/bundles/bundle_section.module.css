@@ -1,0 +1,154 @@
+/* Section */
+.section {
+  padding: 80px 0;
+  background: var(--color-canvas);
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+}
+
+.headingBlock {
+  flex: 1;
+}
+
+/* Badge */
+.badgeWrapper {
+  margin-bottom: 12px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-volt);
+  background: rgba(30, 66, 214, 0.08);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--color-volt);
+  line-height: 1.4;
+}
+
+/* Title */
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-ink);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 48px;
+  }
+}
+
+.titleAccent {
+  color: var(--color-volt);
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-steel);
+  max-width: 500px;
+  margin: 12px 0 0 0;
+}
+
+/* View all link */
+.viewAllLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: none;
+  padding: 10px 16px;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.viewAllLink:hover {
+  background: var(--color-ink);
+  color: var(--color-surface);
+  border-color: var(--color-ink);
+  transform: translateX(2px);
+}
+
+.viewAllLink:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 2px;
+}
+
+.viewAllLink svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 40px;
+  }
+
+  .viewAllLink {
+    width: 100%;
+    padding: 12px 16px;
+    justify-content: center;
+  }
+}

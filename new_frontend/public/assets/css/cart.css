@@ -1,0 +1,224 @@
+/* .cart-page {
+  padding-inline: clamp(1rem, 3vw, 1.5rem);
+} */
+
+.cart-page .cart-layout {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.cart-page .summary-card {
+  position: static;
+  min-inline-size: 0;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.cart-page .summary-card__row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.5fr);
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.cart-page .summary-card__row > :last-child {
+  text-align: end;
+}
+
+.cart-page .shipping-notice {
+  margin: 0.75rem 0 0;
+  max-width: 100%;
+  color: var(--color-ink);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.cart-page .shipping-notice a {
+  color: var(--color-volt);
+  font-weight: 700;
+}
+
+.cart-page .cart-package {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+.cart-page .cart-package__header,
+.cart-page .cart-package__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cart-page .cart-package__contents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cart-page .cart-package__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.cart-page .cart-package__identity img,
+.cart-page .cart-package__identity .cart-table__image {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-page .cart-package__qty,
+.cart-page .cart-package__count,
+.cart-page .cart-package__notice {
+  margin: 0;
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.cart-page .cart-package__total {
+  margin: 0;
+  font-weight: 700;
+  text-align: end;
+}
+
+.cart-page .cart-package--blocked {
+  border-color: var(--color-danger);
+}
+
+.cart-page .summary-card__row > *,
+.cart-page .order__instapay,
+.cart-page .cart-table__details {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.cart-page .order__data {
+  margin: 1.5rem 0 0;
+  gap: 1rem;
+}
+
+.cart-page .payment-fieldset {
+  min-inline-size: 0;
+  margin: 0;
+}
+
+.cart-page .payment__methods {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  margin-block-start: 0.5rem;
+}
+
+.cart-page .payment-btn {
+  min-inline-size: 0;
+  min-block-size: 48px;
+  padding: 0.75rem;
+  border: 1px solid var(--color-volt);
+  overflow-wrap: anywhere;
+}
+
+.cart-page .payment-btn input {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.cart-page .payment-btn:focus-within {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.cart-page .form-input,
+.cart-page input[type="file"] {
+  min-inline-size: 0;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  font-size: 1rem;
+}
+
+.cart-page input[type="file"]::file-selector-button {
+  min-block-size: 44px;
+  margin-inline-end: 0.5rem;
+}
+
+.cart-page .summary-card__checkout-btn {
+  margin-block-start: 0.25rem;
+  white-space: normal;
+}
+
+.cart-page .coupon-form {
+  padding-block-start: 1.25rem;
+  border-block-start: 1px solid var(--color-line);
+}
+
+.cart-page .coupon-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-block-start: 0.5rem;
+}
+
+.cart-page .coupon-controls .form-input {
+  min-inline-size: 0;
+}
+
+.cart-page .coupon-controls button {
+  min-block-size: 44px;
+  white-space: normal;
+}
+
+.cart-page [data-remove-coupon] {
+  grid-column: 1 / -1;
+  text-align: start;
+}
+
+.cart-page .quantity-control__btn {
+  inline-size: 44px;
+  block-size: 44px;
+}
+
+@media (min-width: 480px) {
+  .cart-page .payment__methods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cart-page .coupon-controls {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cart-page .cart-layout {
+    grid-template-columns: minmax(0, 1fr) 30rem;
+  }
+
+  .cart-page .payment__methods {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 769px) {
+  .cart-page .cart-table__header,
+  .cart-page .cart-table__row {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) 7.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-inline: 1rem;
+  }
+}
+
+.cart-page .cart-table__cell {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}

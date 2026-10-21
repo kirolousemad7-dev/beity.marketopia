@@ -1,0 +1,1 @@
+<div class="page-state" role="status" data-loading><span class="loading-spinner" aria-hidden="true"></span><span>{{ $dict['ui']['loading'] }}</span></div>

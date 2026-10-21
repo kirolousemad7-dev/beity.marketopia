@@ -1,0 +1,43 @@
+name: Blade storefront
+
+on:
+  push:
+    paths: ['new_frontend/**', '.github/workflows/new-frontend.yml']
+  pull_request:
+    paths: ['new_frontend/**', '.github/workflows/new-frontend.yml']
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: new_frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, curl, xml
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: new_frontend/package-lock.json
+      - run: composer install --no-interaction --prefer-dist
+      - run: npm ci
+      - run: composer format:check
+      - run: composer test
+      - run: npm run format:check
+      - run: npm run check
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: php artisan view:cache
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: blade-browser-results
+          path: new_frontend/test-results/

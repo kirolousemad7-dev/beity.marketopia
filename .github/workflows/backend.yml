@@ -1,0 +1,55 @@
+name: Backend
+
+on:
+  push:
+    paths: ['backend/**', '.github/workflows/backend.yml']
+  pull_request:
+    paths: ['backend/**', '.github/workflows/backend.yml']
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      APP_ENV: testing
+      APP_KEY: base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+      DB_CONNECTION: mysql
+      DB_DATABASE: bety_testing
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_PASSWORD: testing
+      DB_SOCKET: ''
+      DB_URL: ''
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: bety_testing
+          MYSQL_ROOT_PASSWORD: testing
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -ptesting"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, mbstring, dom, curl, xml, gd, intl, zip
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: composer install --no-interaction --prefer-dist
+      - run: vendor/bin/pint --test app/Rules/Orders app/Http/Controllers/Api/V1/ProductController.php app/Http/Requests/Api/V1/Order app/Http/Resources/V1/OrderResource.php app/Models/Orders/Order.php app/Services/Api/V1/OrderService.php app/Filament/Resources/Orders/Schemas/OrderInfolist.php app/Filament/Resources/Orders/Tables/OrdersTable.php database/factories database/migrations/2026_10_06_150744_add_customer_information_to_orders_table.php tests/Feature/Orders tests/Feature/Products
+      - run: vendor/bin/pint --test app/Enums/BostaSubmissionStatus.php app/Exceptions/Shipping app/Services/Shipping app/Services/Orders app/Jobs/Shipping app/Http/Requests/Admin/Orders app/Policies/OrderPolicy.php app/Filament/Resources/Orders/Actions config/services.php database/migrations/2026_10_06_175330_add_bosta_shipping_to_orders_table.php database/migrations/2026_10_06_183132_add_bosta_pickup_location_to_orders_table.php tests/Feature/Shipping
+      - run: composer test
+      - run: vendor/bin/pint --test app/Filament/Resources/Users app/Http/Requests/Admin/Users app/Models/User.php app/Models/Users app/Policies/UserPolicy.php app/Services/Users database/migrations/2026_10_06_161956_add_soft_deletes_to_users_table.php tests/Feature/Users
+      - run: npm install --package-lock=false --ignore-scripts
+      - run: npm run build
+      - run: php artisan view:cache

@@ -1,0 +1,64 @@
+.DS_Store
+Thumbs.db
+*.log
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+!.env.staging.example
+!.env.production.example
+*.pem
+*.key
+*.p12
+*.pfx
+auth.json
+credentials.json
+
+# Databases, dumps, and SQLite sidecars
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.dump
+*.sql.gz
+
+# Dependencies and regenerable builds
+vendor/
+node_modules/
+.next/
+out/
+public/build/
+public/hot
+public/storage
+
+# Laravel runtime
+bootstrap/cache/*.php
+storage/logs/
+storage/framework/cache/data/
+storage/framework/cache/phpunit/
+storage/framework/sessions/
+storage/framework/views/
+storage/pail/
+
+# Tests, reports, and local archives
+playwright-report/
+test-results/
+playwright/.auth/
+*.zip
+*.7z
+*.rar
+
+# Raw reference video
+*.mp4
+*.mov
+*.webm
+*.mkv
+
+# Local IDE files
+.idea/
+.vscode/
+.cursor/
+.phpunit.result.cache
+.phpunit.cache
